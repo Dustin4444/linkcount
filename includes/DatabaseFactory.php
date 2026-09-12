@@ -11,6 +11,12 @@ class DatabaseFactory {
 		$host = self::fillName('host', $project);
 		$port = self::fillName('port', $project);
 		$name = self::fillName('name', $project);
+		$usingLinksExt = in_array($project, explode(',', Config::get('db-using-links-ext')));
+
+		if ($usingLinksExt) {
+			$host = "links.$host";
+		}
+
 		$user = Config::get('db-user');
 		$pass = Config::get('db-password');
 
